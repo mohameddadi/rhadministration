@@ -1,0 +1,6 @@
+http://microservices.io/patterns/microservices.html
+https://www.javacodegeeks.com/2017/11/java-hashmap-detail-explanation.html
+
+http://www.java67.com/2017/06/39-essential-java-jee-support-engineer-interview-questions-answers.html?m=1#%2EWffYP1WzS5Q%2Elinkedin
+
+http://www.geeksforgeeks.org/

@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.administrationrh.utils.EntityIdResolver;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
@@ -35,7 +36,7 @@ public class DirecteurNonDisponse extends Directeur implements Serializable{
 	}
 
 	public DirecteurNonDisponse(Long id, String diploma, String title, Date firstHiringTeaching, Date hiringLocalSchool,
-			int seniority, String withinRegularMovement, Ecole ecole, int nbrHouresTeaching, Ecole affectedEcole) {
+			int seniority, String withinRegularMovement, Ecole affectedEcole, int nbrHouresTeaching) {
 		super(id, diploma, title, firstHiringTeaching, hiringLocalSchool, seniority, withinRegularMovement, affectedEcole);
 		this.nbrHouresTeaching = nbrHouresTeaching;
 		this.affectedEcole = affectedEcole;

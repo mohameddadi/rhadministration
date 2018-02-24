@@ -33,4 +33,9 @@ public class EnseignentServiceImpl implements EnseignentService{
 		return enseignentRepository.findOne(id);
 	}
 
+	@Override
+	public void addEnseignent(Enseignent enseignent) {
+		enseignentRepository.save(enseignent);
+	}
+
 }

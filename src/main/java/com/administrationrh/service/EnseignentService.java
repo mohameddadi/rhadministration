@@ -12,4 +12,6 @@ public interface EnseignentService {
 	
 	public Enseignent findEnseignentsById(Long id);
 	
+	public void addEnseignent(Enseignent enseignent);
+	
 }
