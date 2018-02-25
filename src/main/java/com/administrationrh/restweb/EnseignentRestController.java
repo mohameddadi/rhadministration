@@ -70,7 +70,7 @@ public class EnseignentRestController {
 			Fonctionnaire owner = enseignentService.findEnseignentsById(reportOwner);
 			rapport.setOwner(owner);
 			rapportService.addRapport(rapport);
-			System.out.println("saving rapport ");
+			System.out.println("saving rapport");
 			
 		} catch (Exception e) {
 			e.getMessage();
