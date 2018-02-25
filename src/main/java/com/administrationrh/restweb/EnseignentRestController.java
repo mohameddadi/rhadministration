@@ -86,5 +86,18 @@ public class EnseignentRestController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + file.getFilename() + "\"")
 				.body(file);
 	}
+	
+	
+	/**
+	 * get reports 
+	 * @param enseignentId
+	 * @return
+	 */
+	@RequestMapping(value = "/enseignent/reports/{enseignentId}", method = RequestMethod.GET)
+	@ResponseBody public List<Rapport> getEnseignentReports(@PathVariable Long enseignentId){
+		return enseignentService.getEnseignentReports(enseignentId);
+	}
+	
+	
  
 }
