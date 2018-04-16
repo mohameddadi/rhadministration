@@ -1,0 +1,5 @@
+datasource:
+  url: jdbc:mysql://localhost:3306/rhadministration
+  username: root
+  password: 
+  driverClassName: com.mysql.jdbc.Driver

@@ -10,7 +10,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 
 import com.administrationrh.service.StorageService;
 
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class })
+@SpringBootApplication()
 public class TestApplication extends SpringBootServletInitializer{
 
 	@Resource

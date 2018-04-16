@@ -2,10 +2,10 @@ package com.administrationrh.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.administrationrh.utils.EntityIdResolver;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;

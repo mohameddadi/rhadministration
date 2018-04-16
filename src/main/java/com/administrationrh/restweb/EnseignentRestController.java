@@ -1,13 +1,17 @@
 package com.administrationrh.restweb;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.jasperreports.JasperReportsPdfView;
 
 import com.administrationrh.domain.Enseignent;
 import com.administrationrh.domain.Fonctionnaire;
@@ -24,6 +30,18 @@ import com.administrationrh.service.EnseignentService;
 import com.administrationrh.service.RapportService;
 import com.administrationrh.service.StorageService;
 
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.export.JRPdfExporter;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.export.SimplePdfReportConfiguration;
+
+@CrossOrigin(origins = {"http://localhost:4200"}, maxAge = 4800, allowCredentials = "false")
 @RestController
 public class EnseignentRestController {
 	
@@ -35,7 +53,12 @@ public class EnseignentRestController {
 	
 	@Autowired
 	StorageService storageService;
+	
+	@Autowired
+	ApplicationContext applicationContext ;
 
+
+	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/enseignents/", method = RequestMethod.GET)
 	@ResponseBody public List<Enseignent> getAllEnseignents(){
 		return enseignentService.getAllEnseignent();
@@ -98,6 +121,20 @@ public class EnseignentRestController {
 		return enseignentService.getEnseignentReports(enseignentId);
 	}
 	
+	
+	@RequestMapping(value="/enseignent/pdfReport", method=RequestMethod.GET)
+	public ModelAndView getPdf() throws JRException {
+		
+	    JasperReportsPdfView view = new JasperReportsPdfView();
+	   
+	    view.setUrl("classpath:/reports/report.jrxml");
+	    Map<String, Object> params = new HashMap<>();
+	    params.put("firstname", "Dadi ");
+	    params.put("lastname", "Mohamed ");
+	    view.setApplicationContext(applicationContext);
+	    return new ModelAndView(view, params);   
+	    
+	}
 	
  
 }
