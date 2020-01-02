@@ -1,7 +1,6 @@
 package com.administrationrh.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.config.annotation.SecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,7 +13,6 @@ import org.springframework.stereotype.Component;
 public class AuthTokenConfig extends SecurityConfigurerAdapter<DefaultSecurityFilterChain, HttpSecurity>{
 
 	@Autowired
-	//@Qualifier("customUserDetailsService")
 	private UserDetailsService customUserDetailsService;
 	
 	@Override

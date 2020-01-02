@@ -20,7 +20,7 @@ public class EcoleResController {
 	private EcoleService ecoleService;
 	
 	@RequestMapping(value="/ecole/", method=RequestMethod.PUT)
-	public ResponseEntity<?> addEnseignent(@RequestBody Ecole ecole){
+	public ResponseEntity<?> addEcole(@RequestBody Ecole ecole){
 		ecoleService.addEcole(ecole);
         return new ResponseEntity<String>(HttpStatus.CREATED);
 	}

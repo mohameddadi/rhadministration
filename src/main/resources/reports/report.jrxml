@@ -36,12 +36,14 @@
 	<detail>
 		<band height="125" splitType="Stretch">
 			<textField>
-				<reportElement x="80" y="10" width="100" height="30" uuid="55572c46-d2d2-49fa-b8ba-5dcc38b3905e"/>
-				<textFieldExpression><![CDATA[$F{firstname}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="180" y="10" width="100" height="30" uuid="4eae0a3f-0417-4922-ad25-dea0a3cea7a2"/>
 				<textFieldExpression><![CDATA[$F{lastname}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="10" width="100" height="30" uuid="5441fb84-f97d-4ba9-81a0-08ce126b96fa">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4ab3ec4d-d7de-45eb-a6a0-574f3964f0c7"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{firstname}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

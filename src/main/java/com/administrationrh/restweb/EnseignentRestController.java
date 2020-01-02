@@ -1,5 +1,6 @@
 package com.administrationrh.restweb;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -58,28 +59,53 @@ public class EnseignentRestController {
 	ApplicationContext applicationContext ;
 
 
+	/**
+	 * getAllEnseignents
+	 * @return
+	 */
 	@CrossOrigin(origins = "http://localhost:4200")
 	@RequestMapping(value = "/enseignents/", method = RequestMethod.GET)
 	@ResponseBody public List<Enseignent> getAllEnseignents(){
 		return enseignentService.getAllEnseignent();
 	}
 	
+	/**
+	 * addEnseignent
+	 * @param enseignent
+	 * @return
+	 */
 	@RequestMapping(value="/enseignent/", method=RequestMethod.PUT)
 	public ResponseEntity<?> addEnseignent(@RequestBody Enseignent enseignent){
 		enseignentService.addEnseignent(enseignent);
         return new ResponseEntity<String>(HttpStatus.CREATED);
 	}
 	
+	/**
+	 * findEnseignentsByEcole
+	 * @param ecoleId
+	 * @return
+	 */
 	@RequestMapping(value = "/enseignentsByEcole/{ecoleId}", method = RequestMethod.GET)
 	@ResponseBody public List<Enseignent> findEnseignentsByEcole(@PathVariable("ecoleId") Long ecoleId){
 		return enseignentService.findEnseignentsByEcole(ecoleId);
 	}
 	
+	/**
+	 * findEnseignentById
+	 * @param id
+	 * @return
+	 */
 	@RequestMapping(value = "/enseignent/{id}", method = RequestMethod.GET)
 	@ResponseBody public Enseignent findEnseignentById(@PathVariable("id") Long id){
 		return enseignentService.findEnseignentsById(id);
 	}
 	
+	/**
+	 *  upload file
+	 * @param file
+	 * @param reportOwner
+	 * @return
+	 */
 	@RequestMapping(value = "/enseignents/uploadFile", method = RequestMethod.POST)
 	public String handleFileUpload(@RequestParam("file") MultipartFile file,
 			@RequestParam("reportOwner") Long reportOwner) {
@@ -101,6 +127,11 @@ public class EnseignentRestController {
 		return "uploadForm";
 	}
 	
+	/**
+	 * get file by name
+	 * @param filename
+	 * @return
+	 */
 	@RequestMapping(value = "/enseignents/files/{filename:.+}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Resource> getFile(@PathVariable String filename) {
@@ -121,16 +152,27 @@ public class EnseignentRestController {
 		return enseignentService.getEnseignentReports(enseignentId);
 	}
 	
-	
+	/**
+	 * generate pfd report
+	 * @return
+	 * @throws JRException
+	 */
 	@RequestMapping(value="/enseignent/pdfReport", method=RequestMethod.GET)
 	public ModelAndView getPdf() throws JRException {
 		
 	    JasperReportsPdfView view = new JasperReportsPdfView();
-	   
+	    
+	    List< Map<String, Object>> datasource = new ArrayList<Map<String, Object>>();
+	    Map<String, Object> p = new HashMap();
+	    p.put("firstname","Dadi med");
+	    
+	    datasource.add(p);
+	    
 	    view.setUrl("classpath:/reports/report.jrxml");
 	    Map<String, Object> params = new HashMap<>();
 	    params.put("firstname", "Dadi ");
 	    params.put("lastname", "Mohamed ");
+	    params.put("datasource", datasource);
 	    view.setApplicationContext(applicationContext);
 	    return new ModelAndView(view, params);   
 	    
